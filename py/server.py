@@ -50,6 +50,25 @@ def PostFunction(funcion):
     else:
         return resp
 
+@route('/functionh/:funcion', method='POST')
+def HttpFunction(funcion):
+    responde(funcion, eval(funcion + "(request)"))
+
+def responde(funcion, resp):
+    par = request.query.decode()
+    if "pagina" in par:
+        pagina = par["pagina"]
+    else:
+        pagina = ""
+    # NodoRuta(funcion, request, pagina)
+
+    # resp = ajusta(resp)
+
+    if request.POST.get('callback'):
+        return request.POST.get('callback') + "(" + resp + ")"
+    else:
+        return resp
+
 @route('/')
 @route('/hello/:name')
 def index(name='World'):
