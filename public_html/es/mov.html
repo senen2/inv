@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<title>Inventario - Movimientos</title>
+	<meta name="description" content="Consulta de los movimientos realizados con el lector" />
+	<meta name="author" content="Botpi" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	
+	<link href='http://fonts.googleapis.com/css?family=Montserrat:700,400' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="../css/myFinan.css">
+	<link rel="shortcut icon" href="../favicon.ico" />
+	<link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+		
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />	
+	<script type="text/javascript" src="../js/japiinv.js"></script>
+	<script type="text/javascript" src="../js/jmov.js"></script>
+	<script type="text/javascript" src="../js/jcomun.js"></script>
+	<script type="text/javascript" src="../js/jtabla.js"></script>
+	<script type="text/javascript" src="../js/jgoogle.js"></script>
+    <!-- <script type="text/javascript" src="../js/live.js"></script> -->
+
+	<script>
+		$(document).ready(function() {
+			pagina = "invmov";
+			titulo = "Inventario - Movimientos";
+			ayuda = "http://gtienda.com/wiki/mediawiki-1.23.5/index.php?title=GTienda:Acerca_de";
+			inicioMov();
+		});
+	</script>
+</head>
+<body>
+<div id="mask" class="DN" onclick="cancelar();"> </div>
+<div id="mask2" class="DN mask" onclick="menuPop(0);"> </div>
+	
+<div class="section">
+	<div class="container">
+		<div class="fila">
+			<div class="col2 menu-img">
+				<span onclick="menuPop(1);"></span>
+			</div>
+	    	<div class="col2 brand2">
+	    		<img alt="inv.myfinan.com" src="images/marca-v2.jpg" />
+	    	</div>
+	    	<div class="col2 welcome">
+	    		<img src="images/refresh.jpg" width="25px" style="margin-top:-3px; margin-left:50px" onclick="refrescar();">
+	    	</div>
+	        <div class="col2 date">
+	        	<input type="text" id="fecha" onchange="refrescar();"/>
+	        </div>
+	        <div class="col2 welcome">
+	        	<select id=periodo onchange="refrescar();">
+	        		<option value='d'>diario</option>
+	        		<option value='m'>mensual</option>
+	        		<option value='y'>anual</option>
+	        	</select>
+	        </div>
+	    	<div class="col2 welcome">
+	    		<label id="usuario">Bienvenido(a)</label>
+	    	</div>
+        </div>
+        
+    </div>
+</div>
+<hr class="hr-header" />
+<div class="section">
+	<div class="container">
+		<div class="fila">
+        <div class="col2 yes-cell"></div>
+		<div class="col2 mo acount">
+			<table id="cuentas"> </table>
+		</div>
+        <div class="col2 no-cell"></div>
+   	</div>
+	</div>
+</div>
+<br>
+<div class="section"><div class="container">
+    <div id="movimientosPanel" class="fila">
+        <div id="entradasPanel" class="col mo inOut scroll">
+        	<label style="font-weight: bold;">DETALLE</label>
+            <table id="entradas" class=""> </table>
+        </div>
+	</div>
+</div>
+</div>
+
+<div id="menu" class="config-menu">
+	<h2>Menu</h2>
+	<a class="btn-a v2" href="entradas.html"><div><span>Compras Lector</span></div></a>
+	<a class="btn-a v2" href="entradast.html"><div><span>Compras Teclado</span></div></a>
+	<a class="btn-a v2" href="creaprod.html"><div><span>Creación y Modificacion</span></div></a>
+	<a class="btn-a v2" href="#" onclick="logout();"><div><span>Salir</span></div></a>
+</div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+Cli
+	no permitir cambio de proveedor cuando haya empezado un pedido
+		o mejor, abrir una pagina de pedido por cada proveedor
+		o mejor aun, borrar hasta la selección del proveedor
+
+	grabar direccion
+
+	grabar nodoruta para cli
+
+	calcular iva
+
+	Seleccionar proveedor
+
+Prov
+	Recibe pedido
+	Despacha
+
+	opciones
+		iva incluido
+		poner precio
+
+	

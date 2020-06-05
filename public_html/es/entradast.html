@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<title>Inventario - Compras</title>
+	<meta name="description" content="Finanzas personales vista en una sola pantalla y con agregar movimientos rapidamente y facil" />
+	<meta name="author" content="Botpi" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	
+	<link href='http://fonts.googleapis.com/css?family=Montserrat:700,400' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="../css/myFinan.css">
+	<link rel="shortcut icon" href="../favicon.ico" />
+	<link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+		
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />	
+	<script type="text/javascript" src="../js/japiinv.js"></script>
+	<script type="text/javascript" src="../js/jentradas.js"></script>
+	<script type="text/javascript" src="../js/jcomun.js"></script>
+	<script type="text/javascript" src="../js/jtabla.js"></script>
+	<script type="text/javascript" src="../js/jgoogle.js"></script>
+    <!-- <script type="text/javascript" src="../js/live.js"></script> -->
+
+	<script>
+		$(document).ready(function() {
+			pagina = "invent";
+			titulo = "Inventario - Compras por Teclado";
+			IDlector = 1
+			ayuda = "http://myfinan.com/wiki/mediawiki-1.23.5/index.php?title=GTienda:Acerca_de";
+			inicioEntradas('T');
+		});
+	</script>
+</head>
+<body onunload="PoneModoI('s', nada);">
+<div id="mask" class="DN" onclick="cancelar();"> </div>
+<div id="mask2" class="DN mask" onclick="menuPop(0);"> </div>
+	
+<div class="section">
+	<div class="container">
+		<div class="fila">
+			<div class="col2 menu-img">
+				<span onclick="menuPop(1);"></span>
+			</div>
+	    	<div class="col2 brand2">
+	    		<img alt="inv.myfinan.com" src="images/marca-v2.jpg" />
+	    	</div>
+	        <div class="col2 date">
+	        	Compras
+	        </div>
+        </div>
+        
+    </div>
+</div>
+<hr class="hr-header" />
+<div class="section">
+	<div class="container">
+        <div class="col2">
+			<div id="aviso">
+				<div class="ui-widget">
+				  <label >Producto: </label>
+				  <input id="tags" onkeyup="ReadLikesI($('#tags').val(), dibujaPosibles);">
+				</div>
+				<div class="section">
+					<div class="container">
+					    <div id="movimientosPanel" class="fila">
+					        <div id="entradasPanel" class="col mo inOut scroll">
+					            <table id="posibles" style="color: black" class=""> </table>
+					        </div>
+						</div>
+					</div>
+				</div>
+			</div>
+    		<div class="mo adding-box box-shadow" id="formulario">
+	            <table>
+	                <tr>
+	                    <td class="titulo" colspan="2">
+	                    	<label id="titulo"> Entrada de un Producto por Teclado</label>
+	                    </td>
+	                </tr>
+	                <tr>
+	                    <td>Codigo</td>
+	                    <td>
+	                        <input id="cb" readonly />
+	                    </td>
+	                </tr>
+	                <tr>
+	                    <td>Nombre</td>
+	                    <td>l
+	                        <input id="nombre" width="200px" readony />
+	                    </td>
+	                </tr>
+	                <tr>
+	                    <td>Cantidad</td>
+	                    <td>
+	                        <input id="cantidad" autofocus />
+	                    </td>
+	                </tr>
+	                <tr>
+	                    <td>Precio de Compra</td>
+	                    <td>
+	                        <input id="precioc"/>
+	                    </td>
+	                </tr>
+	                <tr>
+	                    <td>Precio de Venta</td>
+	                    <td>
+	                        <input id="preciov"/>
+	                    </td>
+	                </tr>
+	                <tr>
+	                    <td style="text-align: right">
+	                        <button onclick="pideTexto();">Cancelar</button>
+	                    </td>
+	                    <td style="text-align: right">
+	                        <button onclick="grabar(cerrar);">Grabar y Cerrar</button>
+	                    </td>
+	                    <td style="text-align: right">
+	                        <button onclick="grabar(pideTexto);">Grabar y Continuar</button>
+	                    </td>
+	                </tr>
+	            </table>
+            </div>
+	    </div>
+   	</div>
+	</div>
+</div>
+</div>
+
+<div id="menu" class="config-menu">
+	<h2>Menu</h2>
+	<a class="btn-a v2" href="mov.html"><div><span>Movimientos</span></div></a>
+	<a class="btn-a v2" href="entradas.html"><div><span>Compras Lector</span></div></a>
+	<a class="btn-a v2" href="creaprod.html"><div><span>Creación y Modificación</span></div></a>
+	<a class="btn-a v2" href="#" onclick="logout();"><div><span>Salir</span></div></a>
+</div>
+</body>
+</html>
