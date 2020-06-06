@@ -26,16 +26,16 @@ function LeeProductoI(IDproducto, funcionret)
 
 // agregar ----------------------------------
 
+function CreaProductoI(cb, nombre, cantidad, precioc, preciov, funcionret)
+{
+	var p ="," + IDlector + ",'" + cb + "','" + nombre + "'," + cantidad +"," + precioc +"," + preciov;
+	sendGet(p, 'CreaProductoI', funcionret); 
+}
+
 function GrabaMovimientoI(concepto, cb, cantidad, precioc, preciov, funcionret)
 {
 	var p ="," + IDlector + ",'" + concepto + "','" + cb + "'," + cantidad + "," + precioc +"," + preciov;
 	sendGet(p, 'GrabaMovimientoI', funcionret); 
-}
-
-function AgregaProductoI(cb, nombre, cantidad, precioc, preciov, funcionret)
-{
-	var p ="," + IDlector + ",'" + cb + "','" + nombre + "'," + cantidad +"," + precioc +"," + preciov;
-	sendGet(p, 'AgregaProductoI', funcionret); 
 }
 
 // modificar -------------------------------

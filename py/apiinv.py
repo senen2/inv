@@ -74,25 +74,28 @@ def LeeProductoI(email, clave, IDlector, IDproducto):
         bd.cierra()
         return None
 
-
 # agregar ---------------------------------------
 
-def TomaLecturaI(email, clave, IDlector, cb, fecha):
+def CreaProductoI(email, clave, IDlector, cb, nombre, precioc, preciov, cantidad):
     bd = DB(nombrebd="inv")
     usuario = logini(email, clave, bd)
     if usuario:
         lector = bd.Ejecuta("select * from lectores where ID=%s" % IDlector)[0]
-        if lector['modo'] in 'ce':
-            anotaLecturaPendiente(IDlector, cb, bd)        
-        elif lector['modo'] == 's':
-            producto = bd.Ejecuta("select * from productos where IDcliente=%s and cb='%s'" %
-                (usuario['IDcliente'], cb))[0]            
-            agregaMovimiento(usuario, lector, producto['ID'], 's', 1, producto['preciov'], bd)
-
+        rows = bd.Ejecuta("select * from productos where IDcliente=%s and cb='%s'" % (lector['IDcliente'], cb))
+        if not rows:
+            bd.Ejecuta('''insert into productos 
+                (IDcliente, cb, nombre, precioc, preciov) 
+                 values (%s, '%s', '%s', %s, %s)
+                ''' % (lector['IDcliente'], cb, nombre, precioc, preciov))
+            IDproducto = bd.UltimoID()
+            agregaMovimiento(usuario, lector, IDproducto, 'e', cantidad, precioc, bd)
+        bd.cierra()
+        return 0
+    
     bd.cierra()
     return None
 
-def GrabaMovimientoI(email, clave, IDlector, concepto, cb, cantidad, precioc, preciov):
+def GrabaMovimientoI(email, clave, IDlector, concepto, cb, cantidad, precioc, preciov): # p3.py
     bd = DB(nombrebd="inv")
     usuario = logini(email, clave, bd)
     if usuario:
@@ -114,22 +117,20 @@ def GrabaMovimientoI(email, clave, IDlector, concepto, cb, cantidad, precioc, pr
     bd.cierra()
     return None
 
-def AgregaProductoI(email, clave, IDlector, cb, nombre, precioc, preciov, cantidad):
+# agregar - desde el lector ---------------------------------------
+
+def TomaLecturaI(email, clave, IDlector, cb, fecha):
     bd = DB(nombrebd="inv")
     usuario = logini(email, clave, bd)
     if usuario:
         lector = bd.Ejecuta("select * from lectores where ID=%s" % IDlector)[0]
-        rows = bd.Ejecuta("select * from productos where IDcliente=%s and cb='%s'" % (lector['IDcliente'], cb))
-        if not rows:
-            bd.Ejecuta('''insert into productos 
-                (IDcliente, cb, nombre, precioc, preciov) 
-                 values (%s, '%s', '%s', %s, %s)
-                ''' % (lector['IDcliente'], cb, nombre, precioc, preciov))
-            IDproducto = bd.UltimoID()
-            agregaMovimiento(usuario, lector, IDproducto, 'e', cantidad, precioc, bd)
-        bd.cierra()
-        return 0
-    
+        if lector['modo'] in 'ce':
+            anotaLecturaPendiente(IDlector, cb, bd)        
+        elif lector['modo'] == 's':
+            producto = bd.Ejecuta("select * from productos where IDcliente=%s and cb='%s'" %
+                (usuario['IDcliente'], cb))[0]            
+            agregaMovimiento(usuario, lector, producto['ID'], 's', 1, producto['preciov'], bd)
+
     bd.cierra()
     return None
 

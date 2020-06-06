@@ -1,0 +1,4 @@
+revisar
+	creacion
+
+terminar loop de la lectura para compras y creación

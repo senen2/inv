@@ -21,10 +21,10 @@ def http_get(url):
     s.close()
     return result
 
-def agregaLectura(IDlector, codigo, fecha, concepto, preciov, precioc, cantidad):
+def grabaMovimiento(IDlector, codigo, fecha, concepto, preciov, precioc, cantidad):
 # def agregaLecturaI(email, clave, IDlector, concepto, cb, cantidad, precioc, preciov, fecha):
-    http_get("http://myfinan.com:8085/function/AgregaLecturaI('oscartienda@gmail.com','oscar',%s,'%s','%s', %s, %s,%s,'%s')?pagina=invadmov" 
+    http_get("http://myfinan.com:8085/function/GrabaMovimientoI('oscartienda@gmail.com','oscar',%s,'%s','%s', %s, %s,%s,'%s')?pagina=invadmov" 
                 % (IDlector, concepto, codigo, cantidad, precioc, preciov, fecha))
 
-agregaLectura(1, '622300124526', '2019-10-13', 's', 600, 500, 1) # galleta ritz
+grabaMovimiento(1, '622300124526', '2019-10-13', 's', 600, 500, 1) # galleta ritz
 # agregaLectura(1, '702914164009', '2019-10-14', 's', 700, 600, 1) # chocoramo mini

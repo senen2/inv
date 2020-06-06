@@ -20,7 +20,7 @@ def http_get(url):
     s.close()
     return result
 
-def tomaLectura(IDlector, codigo, fecha):
+def grabaLectura(IDlector, codigo, fecha):
     # http_get("http://myfinan.com:8085/function/AgregaLecturaI('oscartienda@gmail.com','oscar',1,'622300124526','2019-10-14','s',1)?pagina=invadmov")
     return http_get("http://myfinan.com:8085/function/TomaLecturaI('oscartienda@gmail.com','oscar',%s,'%s','%s')?pagina=invadmov" 
                 % (IDlector, codigo, fecha))
@@ -31,7 +31,7 @@ def poneModo(IDlector, modo):
                 % (IDlector, modo))
 
 poneModo(1, 'c')
-a = tomaLectura(1, '62230012453326', '2019-10-13') # galleta ritz
-# a = tomaLectura(1, '702914164009', '2019-10-14') # chocoramo mini
-# a = tomaLectura(1, '555555555555', '2019-10-13')
+a = grabaLectura(1, '62230012453326', '2019-10-13') # galleta ritz
+# a = grabaLectura(1, '702914164009', '2019-10-14') # chocoramo mini
+# a = grabaLectura(1, '555555555555', '2019-10-13')
 print(a)

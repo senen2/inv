@@ -11,16 +11,20 @@ function inicioEntradas(modo)
 		encabezado="'',''";
 	leeServidor();
 
+	gtimer = 0;
 	if (modo=='L')
-		pideLectura();
+		pideLectura();		
 	else
 		pideTexto();
 }
+
+// toma producto por el lector
 
 function pideLectura()
 {
 	$("#aviso").show();
 	$("#formulario").hide();
+	gtimer = setTimeout(cerrar, 10000);
 	PoneModoI('c', revisaLectura);
 }
 
@@ -32,6 +36,8 @@ function revisaLectura(datos)
 		BuscaLecturaI(revisaLectura);
 	}
 }
+
+// toma producto por el teclado
 
 function pideTexto()
 {
@@ -66,8 +72,15 @@ function tomaOpcion(ID)
 	LeeProductoI(ID, dibujaFormulario);
 }
 
+// ambos -----------
+
 function dibujaFormulario(datos)
 {
+	if (gtimer) {
+		clearTimeout(gtimer);
+		gtimer = 0;
+	}
+	
 	$("#formulario").show();
 	$("#aviso").hide();
 	$("#nombre").val(datos['nombre']);

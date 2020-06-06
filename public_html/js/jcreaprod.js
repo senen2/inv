@@ -11,6 +11,7 @@ function inicioCreaP()
 		encabezado="'',''";
 	leeServidor();
 
+	gtimer = 0;
 	pideLectura();
 }
 
@@ -18,6 +19,7 @@ function pideLectura()
 {
 	$("#aviso").show();
 	$("#formulario").hide();
+	gtimer = setTimeout(cerrar, 10000);
 	PoneModoI('c', revisaLectura);
 }
 
@@ -32,6 +34,11 @@ function revisaLectura(datos)
 
 function dibujaFormulario(datos)
 {
+	if (gtimer) {
+		clearTimeout(gtimer);
+		gtimer = 0;
+	}
+
 	if (datos['nombre']=='*') {
 		modo = "crear";
 		$("#formulario").show();
@@ -62,7 +69,7 @@ function dibujaFormulario(datos)
 function grabar(funcion)
 {
 	if (modo=='crear') 
-		AgregaProductoI(
+		CreaProductoI(
 			  $("#cb").val()
 			, $("#nombre").val()
 			, $("#precioc").val()
@@ -82,5 +89,3 @@ function cerrar()
 {
 	window.location.replace("mov.html");
 }
-
-function nada() {}
