@@ -30,8 +30,10 @@ def poneModo(IDlector, modo):
     http_get("http://myfinan.com:8085/function/PoneModoI('oscartienda@gmail.com','oscar',%s,'%s')?pagina=invmodo" 
                 % (IDlector, modo))
 
-poneModo(1, 'c')
-a = grabaLectura(1, '62230012453326', '2019-10-13') # galleta ritz
+# poneModo(1, 'c')
+a = grabaLectura(1, '622', '2019-10-13') # nuevo
+# a = grabaLectura(1, '62230012453326', '2019-10-13') # pp1
+# a = grabaLectura(1, '622300124526', '2019-10-13') # galleta ritz
 # a = grabaLectura(1, '702914164009', '2019-10-14') # chocoramo mini
 # a = grabaLectura(1, '555555555555', '2019-10-13')
 print(a)

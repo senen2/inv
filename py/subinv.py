@@ -92,11 +92,11 @@ def renglonMovDet(ID, fecha, saldo, concepto, cantidad):
     return {'fecha': fecha, 'entradas':entrada, 'salidas':salida, 'saldo': saldo + entrada - salida,
             'funcion': 'onclick="eliminar(%s)"' % ID, 'eliminar': 'X'}
 
-def agregaMovimiento(usuario, lector, producto, concepto, cantidad, precio, bd):
+def agregaMovimiento(usuario, lector, IDproducto, concepto, cantidad, precio, bd):
     bd.Ejecuta('''insert into movimientos 
         (IDlector, IDbodega, IDusuario, IDproducto, fecha, concepto, cantidad, valor) 
          values (%s, %s, %s, %s, %s, '%s', %s, %s)
-        ''' % (lector['ID'], lector['IDbodega'], usuario['ID'], producto['ID'], 'now()', concepto, cantidad, precio))
+        ''' % (lector['ID'], lector['IDbodega'], usuario['ID'], IDproducto, 'now()', concepto, cantidad, precio))
     return bd.UltimoID()
 
 def anotaLecturaPendiente(IDlector, cb, bd):
